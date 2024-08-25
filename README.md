@@ -1,6 +1,4 @@
-# Subscription-Based-ECommerce-Application
-
-Certainly! Below is a sample `README.md` file for your GitHub repository. It includes instructions for configuring and executing the project in an IntelliJ IDE, using SQL JDBC Connector and MySQL.
+Sure! Here is the updated `README.md` file reflecting the SQL schema you provided:
 
 ---
 
@@ -8,7 +6,7 @@ Certainly! Below is a sample `README.md` file for your GitHub repository. It inc
 
 ## Overview
 
-This project is a subscription-based e-commerce web application that allows customers to order and receive food on a recurring basis. It includes functionalities for managing products, subscriptions, delivery schedules, and order history. The application supports both admin and customer roles, providing a full-featured solution for food delivery and subscription management.
+This project is a subscription-based e-commerce web application designed to handle recurring food deliveries. It allows customers to subscribe to various food products, manage subscriptions, view order history, and more. The application includes both admin and customer functionalities, with support for managing products, subscriptions, delivery schedules, and orders.
 
 ## Technology Stack
 
@@ -19,21 +17,21 @@ This project is a subscription-based e-commerce web application that allows cust
 
 ## Project Structure
 
-The project follows a layered architecture with the following structure:
+The project is organized into the following layers:
 
-- **DAO Layer**: Data Access Objects for interacting with the database.
-- **Service Layer**: Business logic and services.
-- **Controller Layer**: Handles user input and interactions.
-- **Model Layer**: Data models representing application entities.
-- **Factory Layer**: Provides factory classes for creating DAOs and services.
-- **View Layer**: Console-based user interface.
+- **DAO Layer**: Manages database interactions.
+- **Service Layer**: Contains business logic.
+- **Controller Layer**: Manages user interactions.
+- **Model Layer**: Represents data entities.
+- **Factory Layer**: Creates DAO and service instances.
+- **View Layer**: Console-based interface for user interaction.
 
 ## Getting Started
 
 ### Prerequisites
 
-1. **Java JDK**: Ensure you have JDK 11 or later installed.
-2. **MySQL Server**: Make sure MySQL is installed and running on your machine.
+1. **Java JDK**: Ensure JDK 11 or later is installed.
+2. **MySQL Server**: Ensure MySQL is installed and running.
 3. **IntelliJ IDEA**: Use IntelliJ IDEA or any other IDE of your choice.
 
 ### Database Setup
@@ -47,79 +45,87 @@ The project follows a layered architecture with the following structure:
    ```
 
 2. **Create Tables**:
-   - Use the provided SQL script to create tables and insert dummy data. 
+   - Use the provided SQL script to set up the database schema and insert dummy data.
 
    ```sql
-   -- SQL script to create tables
-  CREATE TABLE customer (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
-    email VARCHAR(255) NOT NULL UNIQUE,
-    password VARCHAR(255) NOT NULL
-);
+   USE food_delivery;
 
-CREATE TABLE product (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
-    price DECIMAL(10,2) NOT NULL,
-    subscription_discount DECIMAL(5,2)
-);
+   CREATE TABLE customer (
+       id INT AUTO_INCREMENT PRIMARY KEY,
+       name VARCHAR(255) NOT NULL,
+       email VARCHAR(255) NOT NULL UNIQUE,
+       password VARCHAR(255) NOT NULL
+   );
 
-CREATE TABLE subscription (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    customer_id INT,
-    subscription_type VARCHAR(255) NOT NULL,
-    start_date DATE,
-    end_date DATE,
-    is_active BOOLEAN DEFAULT TRUE,
-    FOREIGN KEY (customer_id) REFERENCES customer(id)
-);
+   CREATE TABLE product (
+       id INT AUTO_INCREMENT PRIMARY KEY,
+       name VARCHAR(255) NOT NULL,
+       price DECIMAL(10,2) NOT NULL,
+       subscription_discount DECIMAL(5,2)
+   );
 
-CREATE TABLE orders (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    customer_email VARCHAR(255) NOT NULL,
-    total_price DECIMAL(10,2) NOT NULL,
-    subscription_type VARCHAR(255),
-    order_date DATE,
-    FOREIGN KEY (customer_email) REFERENCES customer(email)
-);
+   CREATE TABLE subscription (
+       id INT AUTO_INCREMENT PRIMARY KEY,
+       customer_id INT,
+       subscription_type VARCHAR(255) NOT NULL,
+       start_date DATE,
+       end_date DATE,
+       is_active BOOLEAN DEFAULT TRUE,
+       FOREIGN KEY (customer_id) REFERENCES customer(id)
+   );
 
-CREATE TABLE order_item (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    order_id INT,
-    product_id INT,
-    quantity INT NOT NULL,
-    FOREIGN KEY (order_id) REFERENCES orders(id),
-    FOREIGN KEY (product_id) REFERENCES product(id)
-);
+   CREATE TABLE orders (
+       id INT AUTO_INCREMENT PRIMARY KEY,
+       customer_email VARCHAR(255) NOT NULL,
+       total_price DECIMAL(10,2) NOT NULL,
+       subscription_type VARCHAR(255),
+       order_date DATE,
+       FOREIGN KEY (customer_email) REFERENCES customer(email)
+   );
 
-CREATE TABLE delivery_schedule (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    customer_id INT,
-    product_id INT,
-    delivery_date DATE NOT NULL,
-    FOREIGN KEY (customer_id) REFERENCES customer(id),
-    FOREIGN KEY (product_id) REFERENCES product(id)
-);
+   CREATE TABLE order_item (
+       id INT AUTO_INCREMENT PRIMARY KEY,
+       order_id INT,
+       product_id INT,
+       quantity INT NOT NULL,
+       FOREIGN KEY (order_id) REFERENCES orders(id),
+       FOREIGN KEY (product_id) REFERENCES product(id)
+   );
 
-CREATE TABLE order_history (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    customer_id INT,
-    product_id INT,
-    quantity INT,
-    subscription_id INT,
-    order_date DATE,
-    FOREIGN KEY (customer_id) REFERENCES customer(id),
-    FOREIGN KEY (product_id) REFERENCES product(id),
-    FOREIGN KEY (subscription_id) REFERENCES subscription(id)
-);
+   CREATE TABLE delivery_schedule (
+       id INT AUTO_INCREMENT PRIMARY KEY,
+       customer_id INT,
+       product_id INT,
+       delivery_date DATE NOT NULL,
+       FOREIGN KEY (customer_id) REFERENCES customer(id),
+       FOREIGN KEY (product_id) REFERENCES product(id)
+   );
+
+   CREATE TABLE order_history (
+       id INT AUTO_INCREMENT PRIMARY KEY,
+       customer_id INT,
+       product_id INT,
+       quantity INT,
+       subscription_id INT,
+       order_date DATE,
+       FOREIGN KEY (customer_id) REFERENCES customer(id),
+       FOREIGN KEY (product_id) REFERENCES product(id),
+       FOREIGN KEY (subscription_id) REFERENCES subscription(id)
+   );
+
+   -- Insert dummy data
+   INSERT INTO product (name, price, subscription_discount) VALUES 
+       ('Organic Apple', 1.50, 0.10), 
+       ('Whole Wheat Bread', 2.00, 0.15), 
+       ('Almond Milk', 3.50, 0.20);
+   ```
 
 ### Setting Up the Project
 
 1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/yourusername/your-repository.git
-   cd your-repository
+   git clone https://github.com/jsvnthkiran/Subscription-Based-ECommerce-Application.git
+   cd Subscription-Based-ECommerce-Application
    ```
 
 2. **Import the Project into IntelliJ IDEA**:
@@ -158,9 +164,10 @@ CREATE TABLE order_history (
 2. **Using the Application**:
    - Follow the console prompts to navigate between Admin and Customer functionalities.
    - Admin functionalities include managing products, subscriptions, and viewing order history.
-   - Customer functionalities include subscribing to products and viewing delivery schedules.
+   - Customer functionalities include subscribing to products, viewing delivery schedules, and placing orders.
 
 ### Error Handling
 
-- Ensure that any SQL exceptions or issues with the JDBC connection are handled gracefully.
+- Ensure SQL exceptions or JDBC connection issues are handled gracefully.
 - Review the exception handling code in DAO implementations for proper error management.
+
