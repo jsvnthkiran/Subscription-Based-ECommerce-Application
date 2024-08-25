@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Dashboard</title>
+    <script src="logout-func.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="cart.js" defer></script> <!-- Include the cart script -->
+    <style>
+        body {
+    font-family: Campton, Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #FFF5EE;
+}
+
+header a, .nav-links a, .footer-about a {
+    color: #000000; /* Set link color */
+    text-decoration: none; /* Remove underline */
+}
+
+header a:hover, .nav-links a:hover, .footer-about a:hover {
+    text-decoration: none; /* Ensure no underline on hover */
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    margin: 0;
+    padding: 20px 0;
+    background-color: #FFF5EE;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* Add shadow */
+}
+
+a {
+    text-decoration: none;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: #FFF5EE; /* Match sidebar color */
+    color: #000000; /* Ensure text color is black for contrast */
+    
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.open-sidebar-btn {
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #000000; /* Ensure icon color is black */
+    margin-right: 1rem;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-right: 3px; /* Space between the cart icon and the text */
+    font-size: 32px; /* Slightly larger font size */
+    color: #000000; /* Text color */
+    font-weight: bold; /* Use a bold weight for a professional look */
+    text-transform: uppercase; /* Make text uppercase for a stylish touch */
+    font-family: "Bebas Neue", sans-serif;
+    font-style: normal;
+}
+ .logo span {
+    font-size: 32px; /* Slightly larger font size */
+    color: #6b7e09; /* Text color */
+    font-weight: bold; /* Use a bold weight for a professional look */
+    text-transform: uppercase; /* Make text uppercase for a stylish touch */
+    font-family: "Bebas Neue", sans-serif;
+    font-style: normal;
+}
+
+
+.profile-icon {
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.profile-icon i {
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #000000; /* Ensure icon color is black */
+}
+
+@media (max-width: 768px) {
+    .navbar .profile-icon i {
+        font-size: 1.25rem;
+    }
+}
+
+/* Sidebar Styling */
+.sidebar {
+    height: 100vh; /* Full viewport height */
+    width: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #FFF5EE; /* Set sidebar background to white */
+    color: #000000; /* Ensure text color is black for contrast */
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+    z-index: 1000;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* Add shadow */
+    
+}
+
+.sidebar a {
+    padding: 8px 32px;
+    font-size: 1.25rem;
+    color: #000000; /* Set link color to black for contrast */
+    display: block;
+    transition: 0.3s;
+}
+
+.sidebar a:hover {
+    background-color: #FFF5EE; /* Light gray background on hover */
+    color: #B7D817;
+}
+
+.sidebar .close-btn {
+    position: absolute;
+    top: 20px; /* Adjust as needed */
+    right: 20px; /* Position at the edge of the sidebar */
+    font-size: 2rem;
+    color: #000000; /* Ensure close button color is black */
+    cursor: pointer;
+    z-index: 1001; /* Ensure it is above other content */
+}
+
+@media (max-width: 768px) {
+    .sidebar a {
+        font-size: 1rem;
+    }
+}
+
+.sidebar .category-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar .category-list :hover {
+    background-color: #B7D817;
+    color: #000000;
+}
+
+.sidebar .category-list > li {
+    position: relative;
+}
+
+.sidebar .category-list > li > a {
+    padding: 8px 32px;
+    display: block;
+    color: #000000;
+    text-decoration: none;
+    font-size: 1.25rem;
+}
+
+.sidebar .subcategory-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: none; /* Initially hidden */
+}
+
+
+.sidebar .subcategory-list li a {
+    padding: 8px 64px; /* Indented for subcategories */
+    display: block;
+    color: #000000;
+    text-decoration: none;
+    font-size: 1.1rem;
+}
+
+.sidebar .subcategory-list li a:hover {
+    background-color: #5a6d07;
+}
+
+.sidebar .category-list > li:hover .subcategory-list {
+    display: block; /* Show subcategories on hover */
+}
+
+.content {
+    transition: margin-left 0.5s;
+    padding: 16px;
+}
+
+.bg-image {
+    background-image: url('https://images.pexels.com/photos/3085062/pexels-photo-3085062.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load');
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: calc(100vh - 200px); /* Full viewport height minus header height */
+    position: relative;
+    z-index: 0;
+}
+
+.bg-image::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(10, 10, 10, 0.6); /* Whitish overlay */
+    z-index: 1;
+}
+
+.bg-image::after {
+    content: 'Everything You \A Need, All in One \A Place.';
+    position: absolute;
+    top: 50%;
+    left: 10%; /* Adjust this to position the text more to the left */
+    transform: translateY(-50%);
+    color: #B7D817; /* Adjusted text color */
+    font-family: 'Campton', sans-serif;
+    font-size: 3.5rem; /* Make the text bigger */
+    font-weight: 800;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    text-align: left; /* Align text to the left */
+    white-space: pre-line; /* Ensure line breaks are respected */
+    z-index: 2;
+    padding: 0 20px; /* Add some padding to avoid text touching the edge */
+    /* Initial positioning for animation */
+    opacity: 0;
+    transform: translateY(-50%) translateX(-100%);
+    /* Animation properties */
+    animation: fadeIn 2s ease-in-out forwards, slideIn 1s ease-in-out forwards;
+}
+
+/* Keyframes for animations */
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideIn {
+    to {
+        transform: translateY(-50%) translateX(0);
+    }
+}
+
+/* Footer Styling */
+footer {
+    background: #000000;
+    color: #FFF5EE;
+    text-align: center;
+    padding: 10px 0;
+    width: 100%;
+    font-family: 'Campton', sans-serif;
+    margin-top: 40px;
+}
+
+.footer-upper {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 20px 50px;
+    border-bottom: 1px solid #444;
+}
+
+.footer-address {
+    flex: 1;
+}
+
+.footer-address p {
+    margin: 5px 0;
+    font-size: smaller;
+}
+
+.footer-about {
+    flex: 1;
+}
+
+.footer-about a {
+    display: block;
+    color: #FFF5EE;
+    text-decoration: none;
+    font-size: smaller;
+    margin: 5px 0;
+}
+
+.footer-about a:hover {
+    text-decoration: underline;
+}
+
+.footer-social {
+    flex: 1;
+    text-align: right;
+}
+
+.footer-social .social-icon {
+    color: #FFF5EE;
+    text-decoration: none;
+    margin-left: 15px;
+    font-size: 20px;
+}
+
+.footer-social .social-icon:hover {
+    color: #B7D817;
+}
+
+.footer-bottom {
+    padding: 10px;
+    background-color: #000000;
+    color: #FFF5EE;
+    text-align: center;
+}
+
+
+.product-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 items per row */
+    gap: 50px; /* Space between grid items */
+    margin: 0 50px; /* Center the grid with margins on both sides */
+    max-width: 100vw; /* Limit the maximum width of the container */
+    padding: 20px 20px; /* Add padding on the left and right */
+}
+
+.product {
+    border-radius: 10px;
+    box-sizing: border-box; /* Ensure padding and border are included in the width */
+    border: 1px solid #FFF5EE;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #FFEFD5; /* Ensure background is white for contrast */
+}
+
+
+.product img {
+    width: 100%;
+    height: 200px; /* Fixed height for the image container */
+    object-fit: cover; /* Cover the container while maintaining aspect ratio */
+    margin-bottom: 10px; /* Space between image and text */
+}
+
+
+
+        .product-dropdown {
+            margin-top: 10px;
+        }
+        .product-dropdown select {
+            width: 100%;
+            padding: 5px;
+            margin-bottom: 10px;
+        }
+        /* Button styling */
+        .order-now-btn {
+    display: inline-block;
+    background-color: #6b7e09;
+    color: #000000;
+    padding: 10px 20px; /* Increased padding for a longer button */
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+    font-size: 16px; /* Optional: Adjust font size if needed */
+}
+
+        .order-now-btn:hover {
+            background-color: #5a6d07;
+        }
+        #load-more {
+            display: block;
+            background-color: #6b7e09;
+            color: #000000;
+            padding: 8px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+        }
+        #load-more:hover {
+            background-color: #5a6d07;
+        }
+        /* Load More Container */
+        .load-more-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 20px auto;
+            width: 70%; /* Adjust width as needed */
+            max-width: 1000px; /* Optional: limit max width */
+        }
+        .load-more-info {
+            flex: 70%;
+            font-size: smaller;
+            color: #000;
+        }
+        .tracker {
+            background-color: #FFF5EE;
+            color: #000000;
+            padding: 40px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            font-weight: 400;
+            font-size:medium;
+        }
+        .tracker :hover{
+            color: #B7D817;
+        }
+        
+.profile-icon {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #FFF5EE;
+    border: 1px solid #FFF5EE;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    min-width: 150px;
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: #333;
+}
+
+.dropdown-menu a:hover {
+    background-color: #B7D817;
+}
+
+.profile-icon:hover .dropdown-menu {
+    display: block;
+}
+.open-sidebar-btn :hover{
+    color: #B7D817;
+}
+
+.profile-icon i :hover{
+    color: #B7D817;
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <div class="logo-container">
+                <span class="open-sidebar-btn" onclick="openSidebar()">
+                    <i class="fas fa-bars"></i>
+                </span>
+                <a href="dashboard.html" class="logo">
+                    <i class="bi bi-cart"></i> BasketBliss
+                </a>
+            </div>
+            <div class="profile-icon">
+                <i class="fas fa-user"></i>
+                <div class="dropdown-menu">
+                    <a href="profile.html">View Profile</a>
+                    <a onclick="logout()">Logout</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="bg-image"></div>
+
+    <div id="mySidebar" class="sidebar">
+        <a href="javascript:void(0)" class="close-btn" onclick="closeSidebar()">
+            <i class="fas fa-times"></i>
+        </a>
+        <ul class="category-list">
+        <a href="dashboard.html">Home</a>
+            <li>
+                <a href="#category1">Categories</a>
+                <ul class="subcategory-list">
+                    <li><a href="grocery-list.html">Groceries & Staples</a></li>
+                    <li><a href="processed-list.html">Processed Food</a></li>
+                    <li><a href="veggie-list.html">Veggies & Fruits</a></li>
+                    <li><a href="dairy-list.html">Dairy Products</a></li>
+                </ul>
+            </li>
+        <a href="subscription.html">Subscription</a>
+        <a href="cart.html">Cart <span class="cart-count">0</span></a>
+        </ul>
+    </div>
+
+
+    <div class="tracker">
+        <a href="dashboard.html">Home</a> > <a href="veggie-list.html">Vegetable & Fruits</a>
+    </div>
+
+    <div class="dashboard-content">
+        <div class="main-section">
+            <div class="product-container" id="product-container">
+                <!-- Products will be dynamically inserted here -->
+            </div>
+            <div class="load-more-container">
+                <div class="load-more-info">
+                    <span id="visible-products">0</span> / <span id="total-products">0</span> products visible
+                </div>
+                <button id="load-more" class="order-now-btn">Load More</button>
+            </div>
+        </div>
+    </div>
+
+    
+
+    <footer>
+        <div class="footer-upper">
+            <div class="footer-address">
+                <h4>Address</h4>
+                <p>1234 Elm St</p>
+                <p>Suite 567</p>
+                <p>Springfield, USA</p>
+            </div>
+            <div class="footer-about">
+                <h4>About</h4>
+                <a href="#faq">FAQ</a>
+                <a href="#terms">Terms and Conditions</a>
+                <a href="#privacy">Privacy Policy</a>
+            </div>
+            <div class="footer-social">
+                <h4>Connect with us</h4>
+                <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 404 Brain Not Found. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function openSidebar() {
+            document.getElementById("mySidebar").style.width = "250px";
+            document.querySelector(".content").style.marginLeft = "250px";
+        }
+
+        function closeSidebar() {
+            document.getElementById("mySidebar").style.width = "0";
+            document.querySelector(".content").style.marginLeft= "0";
+        }
+
+        document.querySelectorAll('.category-list > li > a').forEach(categoryLink => {
+        categoryLink.addEventListener('click', function(event) {
+            const subcategoryList = this.nextElementSibling;
+            if (subcategoryList && subcategoryList.classList.contains('subcategory-list')) {
+                event.preventDefault();
+                subcategoryList.style.display = subcategoryList.style.display === 'block' ? 'none' : 'block';
+            }
+        });
+    });
+
+        let currentPage = 0;
+        const itemsPerPage = 6;
+        let products = [];
+    
+        function renderProducts() {
+            const productContainer = document.getElementById('product-container');
+            const startIndex = currentPage * itemsPerPage;
+            const endIndex = Math.min(startIndex + itemsPerPage, products.length);
+
+            for (let i = startIndex; i < endIndex; i++) {
+                const product = products[i];
+                const productDiv = document.createElement('div');
+                productDiv.classList.add('product');
+                productDiv.innerHTML = `
+                    <img src="${product.image}" alt="${product.name}">
+                    <h4><a href="veggie-detail.html?id=${product.id}">${product.name}</a></h4>
+                    <p>Price: ${product.price}</p>
+                    <a class="order-now-btn" href="veggie-detail.html?id=${product.id}">View</a>
+                `;
+                productContainer.appendChild(productDiv);
+
+                productDiv.querySelector('.order-now-btn').addEventListener('click', () => {
+                    addToCart(product);
+                });
+            }
+
+            updateProductCount(endIndex);
+            updateLoadMoreButton(endIndex);
+        }
+    
+        function loadMoreProducts() {
+            currentPage++;
+            renderProducts();
+        }
+    
+        function showLessProducts() {
+            currentPage = Math.max(0, currentPage - 1);
+            document.getElementById('product-container').innerHTML = '';
+            renderProducts();
+        }
+    
+        function updateProductCount(visibleItems) {
+            document.getElementById('visible-products').textContent = visibleItems;
+            document.getElementById('total-products').textContent = products.length;
+        }
+    
+        function updateLoadMoreButton(visibleItems) {
+            const loadMoreButton = document.getElementById('load-more');
+            const allProductsLoaded = visibleItems >= products.length;
+    
+            if (allProductsLoaded) {
+                loadMoreButton.textContent = 'Show Less';
+                loadMoreButton.removeEventListener('click', loadMoreProducts);
+                loadMoreButton.addEventListener('click', showLessProducts);
+            } else {
+                loadMoreButton.textContent = 'Load More';
+                loadMoreButton.removeEventListener('click', showLessProducts);
+                loadMoreButton.addEventListener('click', loadMoreProducts);
+            }
+        }
+    
+        fetch('veggie.json')
+            .then(response => response.json())
+            .then(data => {
+                products = data;
+                renderProducts();
+            })
+            .catch(error => console.error('Error fetching products:', error));
+    
+        function updateCartCount() {
+            const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+            const cartCountElem = document.getElementById('cart-count');
+            if (cartCountElem) {
+                cartCountElem.textContent = cartItems.length;
+            }
+        }
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            updateCartCount();
+            redirectBasedOnRole();
+        });
+
+    </script>
+</body>
+</html>

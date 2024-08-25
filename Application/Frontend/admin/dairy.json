@@ -1,0 +1,74 @@
+[
+    {
+        "id": 1,
+        "name": "Cow Milk",
+        "image": "./dairy/1.jpg",
+        "price": "₹60.00",
+        "description": "Fresh and pure cow milk.",
+        "detailImage": "dairy-cow-milk-detail.jpg"
+    },
+    {
+        "id": 2,
+        "name": "Buffalo Milk",
+        "image": "./dairy/2.jpg",
+        "price": "₹80.00",
+        "description": "Rich and creamy buffalo milk.",
+        "detailImage": "dairy-buffalo-milk-detail.jpg"
+    },
+    {
+        "id": 3,
+        "name": "Curd",
+        "image": "./dairy/3.jpg",
+        "price": "₹50.00",
+        "description": "Homemade curd made from fresh milk.",
+        "detailImage": "dairy-curd-detail.jpg"
+    },
+    {
+        "id": 4,
+        "name": "Paneer",
+        "image": "./dairy/4.jpg",
+        "price": "₹120.00",
+        "description": "Fresh paneer made from high-quality milk.",
+        "detailImage": "dairy-paneer-detail.jpg"
+    },
+    {
+        "id": 5,
+        "name": "Buttermilk",
+        "image": "./dairy/5.jpg",
+        "price": "₹55.00",
+        "description": "Refreshing buttermilk with traditional flavors.",
+        "detailImage": "dairy-buttermilk-detail.jpg"
+    },
+    {
+        "id": 6,
+        "name": "Ghee",
+        "image": "./dairy/6.jpg",
+        "price": "₹140.00",
+        "description": "Pure cow ghee made from traditional methods.",
+        "detailImage": "dairy-ghee-detail.jpg"
+    },
+    {
+        "id": 7,
+        "name": "Skim Milk",
+        "image": "./dairy/7.jpg",
+        "price": "₹65.00",
+        "description": "Low-fat skim milk for a healthier option.",
+        "detailImage": "dairy-skim-milk-detail.jpg"
+    },
+    {
+        "id": 8,
+        "name": "Lassi",
+        "image": "./dairy/8.jpg",
+        "price": "₹75.00",
+        "description": "Traditional lassi with a hint of sweetness.",
+        "detailImage": "dairy-lassi-detail.jpg"
+    },
+    {
+        "id": 9,
+        "name": "Milk Powder",
+        "image": "./dairy/9.jpg",
+        "price": "₹130.00",
+        "description": "High-quality milk powder for versatile use.",
+        "detailImage": "dairy-milk-powder-detail.jpg"
+    }
+]

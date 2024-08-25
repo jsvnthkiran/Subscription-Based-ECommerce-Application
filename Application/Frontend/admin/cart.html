@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Dashboard</title>
+    <script src="logout-func.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Campton, Arial, sans-serif;
+            margin: 0;
+            background-color: #FFF5EE;
+            padding: 0;
+        }
+
+        header a, .nav-links a, .footer-about a {
+            color: #000000; /* Set link color */
+            text-decoration: none; /* Remove underline */
+        }
+
+        header a:hover, .nav-links a:hover, .footer-about a:hover {
+            text-decoration: none; /* Ensure no underline on hover */
+        }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            margin: 0;
+            padding: 20px 0;
+            background-color: #FFF5EE;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* Add shadow */
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            background-color: #FFF5EE;
+            color: #000000;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .open-sidebar-btn {
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #000000;
+            margin-right: 1rem;
+        }
+
+        .logo i {
+    font-size: 26px;
+    margin-right: 3px; /* Space between the cart icon and the text */
+    color: #000000;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-right: 3px; /* Space between the cart icon and the text */
+    font-size: 32px; /* Slightly larger font size */
+    color: #000000; /* Text color */
+    font-weight: bold; /* Use a bold weight for a professional look */
+    text-transform: uppercase; /* Make text uppercase for a stylish touch */
+    font-family: "Bebas Neue", sans-serif;
+    font-style: normal;
+}
+        .profile-icon {
+            position: relative;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+        }
+
+        .profile-icon i {
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #000000;
+        }
+
+        .sidebar {
+    height: 100vh; /* Full viewport height */
+    width: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #FFF5EE; /* Set sidebar background to white */
+    color: #000000; /* Ensure text color is black for contrast */
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+    z-index: 1000;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* Add shadow */
+    
+}
+
+        .sidebar a {
+            padding: 8px 32px;
+            font-size: 1.25rem;
+            color: #000000;
+            display: block;
+            transition: 0.3s;
+        }
+
+        .sidebar a:hover {
+    background-color: #FFF5EE; /* Light gray background on hover */
+    color: #B7D817;
+}
+
+        .sidebar .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 2rem;
+            color: #000000;
+            cursor: pointer;
+            z-index: 1001;
+        }
+        .sidebar .category-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar .category-list :hover {
+    background-color: #B7D817;
+    color: #000000;
+}
+
+.sidebar .category-list > li {
+    position: relative;
+}
+
+.sidebar .category-list > li > a {
+    padding: 8px 32px;
+    display: block;
+    color: #000000;
+    text-decoration: none;
+    font-size: 1.25rem;
+}
+
+.sidebar .subcategory-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: none; /* Initially hidden */
+}
+
+
+.sidebar .subcategory-list li a {
+    padding: 8px 64px; /* Indented for subcategories */
+    display: block;
+    color: #000000;
+    text-decoration: none;
+    font-size: 1.1rem;
+}
+
+.sidebar .subcategory-list li a:hover {
+    background-color: #5a6d07;
+}
+
+.sidebar .category-list > li:hover .subcategory-list {
+    display: block; /* Show subcategories on hover */
+}
+
+        .content {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 16px;
+            overflow-y: auto;
+            margin-top: 80px; /* Adjust for header height */
+            margin-bottom: 60px; /* Adjust for footer height */
+        }
+
+        footer {
+            background: #000000;
+            color: #FFF5EE;
+            text-align: center;
+            padding: 10px 0;
+            width: 100%;
+            font-family: 'Campton', sans-serif;
+            position: relative;
+            bottom: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        .footer-upper {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 20px 50px;
+            border-bottom: 1px solid #444;
+        }
+
+        .footer-address {
+            flex: 1;
+        }
+
+        .footer-address p {
+            margin: 5px 0;
+            font-size: smaller;
+        }
+
+        .footer-about {
+            flex: 1;
+        }
+
+        .footer-about a {
+            display: block;
+            color: #FFF5EE;
+            text-decoration: none;
+            font-size: smaller;
+            margin: 5px 0;
+        }
+
+        .footer-about a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-social {
+            flex: 1;
+            text-align: right;
+        }
+
+        .footer-social .social-icon {
+            color: #FFF5EE;
+            text-decoration: none;
+            margin-left: 15px;
+            font-size: 20px;
+        }
+
+        .footer-social .social-icon:hover {
+            color: #B7D817;
+        }
+
+        .footer-bottom {
+            padding: 10px;
+            background-color: #000000;
+            color: #FFF5EE;
+            text-align: center;
+        }
+
+        .main-container {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            padding-left: 20px;
+        }
+
+        main {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 16px;
+            overflow-y: auto;
+        }
+
+        #cart-container {
+            width: 100%;
+        }
+
+        .empty-cart {
+            text-align: center;
+            font-size: 1.25rem;
+            color: #999;
+        }
+
+.profile-icon {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #FFF5EE;
+    border: 1px solid #FFF5EE;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    min-width: 150px;
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: #333;
+}
+
+.dropdown-menu a:hover {
+    background-color: #B7D817;
+}
+
+.profile-icon:hover .dropdown-menu {
+    display: block;
+}
+
+/* Main container to hold both cart and checkout sections */
+.main-container {
+    margin: -40px;
+    display: flex;
+    flex-direction: row; /* Align children horizontally */
+    height: 100vh; /* Full viewport height */
+    width: 100vw;
+    overflow: hidden; /* Prevent overflow issues */
+}
+
+/* Content wrapper inside the main container */
+.content {
+    display: flex;
+    width: 100%;
+}
+
+/* Cart container takes up 70% of the width */
+.cart-container {
+    width: 70%; /* 70% of viewport width */
+    padding: 16px;
+    box-sizing: border-box; /* Ensure padding is included in width calculation */
+    overflow-y: auto; /* Allow vertical scrolling if needed */
+}
+
+/* Checkout container takes up 30% of the width */
+.checkout-container {
+    width: 30%;
+    background-color: #FFEFD5;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    box-sizing: border-box; /* Ensure padding is included in width calculation */
+    overflow-y: auto; /* Allow vertical scrolling if needed */
+}
+
+/* Styles for the cart */
+.empty-cart {
+    text-align: center;
+    font-size: 1.25rem;
+    color: #999;
+}
+
+.cart-items-list {
+    list-style: none;
+    padding: 0;
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    border: 1px solid #FFF5EE;
+    border-radius: 8px;
+    padding: 0.75rem; /* Reduced padding */
+    background-color: #FFF5EE;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+    margin-bottom: 0.75rem; /* Reduced margin */
+}
+
+.cart-item:hover {
+    background-color: #FFF5EE;
+}
+
+.cart-item img {
+    border-radius: 4px;
+    margin-right: 0.75rem; /* Reduced margin */
+}
+
+.cart-item h3 {
+    margin: 0;
+    font-size: 1.25rem;
+    color: #333;
+}
+
+.cart-item p {
+    margin: 0;
+    font-size: 1rem;
+    color: #666;
+}
+
+.cart-item .remove-item {
+    margin-left: auto;
+    font-size: 1.25rem;
+    color: #e74c3c;
+    cursor: pointer;
+}
+
+.cart-item .remove-item:hover {
+    color: #c0392b;
+}
+
+.cart-item .serial-number {
+    font-size: 1rem;
+    color: #333;
+    margin-right: 0.75rem; /* Adjust margin for serial number */
+}
+
+/* Styles for the checkout section */
+.checkout-container h2 {
+    font-size: 1.5rem;
+    color: #000000;
+    margin-bottom: 15px;
+}
+
+.checkout-container label {
+    display: block;
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.checkout-container input,
+.checkout-container select {
+    width: calc(100% - 22px); /* Adjust width for padding */
+    padding: 10px;
+    margin-bottom: 15px; /* Increase margin for better spacing */
+    border: 1px solid #FFF5EE;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.checkout-container button {
+    background-color: #6b7e09;
+    color: #FFF5EE;
+    border: none;
+    padding: 12px; /* Increased padding for better click area */
+    font-size: 1.125rem;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+
+.checkout-container button:hover {
+    background-color: #B7D817;
+    color: #000000;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+    .main-container {
+        flex-direction: column; /* Stack cart and checkout vertically on smaller screens */
+    }
+
+    .content {
+        flex-direction: column;
+    }
+
+    .cart-container,
+    .checkout-container {
+        width: 100vw; /* Full viewport width on smaller screens */
+    }
+
+    .cart-container {
+        margin-bottom: 16px; /* Space between cart and checkout on smaller screens */
+    }
+}
+
+.open-sidebar-btn :hover{
+    color: #B7D817;
+}
+
+.profile-icon i :hover{
+    color: #B7D817;
+}
+
+
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <div class="logo-container">
+                <span class="open-sidebar-btn" onclick="openSidebar()">
+                    <i class="fas fa-bars"></i>
+                </span>
+                <a href="dashboard.html" class="logo">
+                    <i class="bi bi-cart"></i> BasketBliss
+                </a>
+            </div>
+            <div class="profile-icon">
+                <i class="fas fa-user"></i>
+                <div class="dropdown-menu">
+                    <a href="profile.html">View Profile</a>
+                    <a href="index.html" onclick="logout()">Logout</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div id="mySidebar" class="sidebar">
+        <a href="javascript:void(0)" class="close-btn" onclick="closeSidebar()">
+            <i class="fas fa-times"></i>
+        </a>
+        <ul class="category-list">
+        <a href="dashboard.html">Home</a>
+            <li>
+                <a href="#category1">Categories</a>
+                <ul class="subcategory-list">
+                    <li><a href="grocery-list.html">Groceries & Staples</a></li>
+                    <li><a href="processed-list.html">Processed Food</a></li>
+                    <li><a href="veggie-list.html">Veggies & Fruits</a></li>
+                    <li><a href="dairy-list.html">Dairy Products</a></li>
+                </ul>
+            </li>
+        <a href="subscription.html">Subscription</a>
+        <a href="cart.html">Cart <span class="cart-count">0</span></a>
+        </ul>
+    </div>
+    
+
+    <div class="main-container">
+        <main>
+                <div class="cart-container">
+                    <div id="cart-items">
+                        <!-- Container for cart items -->
+                        <ul id="cart-items-list" class="cart-items-list"></ul>
+                        <div class="empty-cart" id="empty-cart">Your cart is empty.</div>
+                    </div>
+                </div>
+                <div class="checkout-container">
+                    <h2>Checkout</h2>
+                    <label for="card-number">Card Number</label>
+                    <input type="text" id="card-number" placeholder="Enter your card number">
+                    <label for="expiry-date">Expiry Date</label>
+                    <input type="text" id="expiry-date" placeholder="MM/YY">
+                    <label for="cvv">CVV</label>
+                    <input type="text" id="cvv" placeholder="Enter CVV">
+                    <button type="button" onclick="processPayment()">Pay Now</button>
+                </div>
+        </main>
+    </div>
+
+    <footer>
+        <div class="footer-upper">
+            <div class="footer-address">
+                <h4>Address</h4>
+                <p>1234 Elm St</p>
+                <p>Suite 567</p>
+                <p>Springfield, USA</p>
+            </div>
+            <div class="footer-about">
+                <h4>About</h4>
+                <a href="#faq">FAQ</a>
+                <a href="#terms">Terms and Conditions</a>
+                <a href="#privacy">Privacy Policy</a>
+            </div>
+            <div class="footer-social">
+                <h4>Connect with us</h4>
+                <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 404 Brain Not Found. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function openSidebar() {
+            document.getElementById("mySidebar").style.width = "250px";
+            document.querySelector(".content").style.marginLeft = "250px";
+        }
+
+        function closeSidebar() {
+            document.getElementById("mySidebar").style.width = "0";
+            document.querySelector(".content").style.marginLeft = "0";
+        }
+
+        function updateCartCount() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const cartCount = document.querySelector('.cart-count');
+            cartCount.textContent = cart.length;
+        }
+
+        function renderCart() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const cartItemsList = document.getElementById('cart-items-list');
+            const emptyCartMessage = document.getElementById('empty-cart');
+
+            cartItemsList.innerHTML = '';
+            emptyCartMessage.style.display = cart.length === 0 ? 'block' : 'none';
+
+            // Fetch data from all relevant files
+            Promise.all([
+                fetch('dairy.json').then(response => response.json()),
+                fetch('veggie.json').then(response => response.json()),
+                fetch('processed.json').then(response => response.json()),
+                fetch('grocery.json').then(response => response.json())
+            ])
+            .then(([dairyData, veggieData, processedData, groceryData]) => {
+                // Combine all product data into a single array
+                const allProducts = [...dairyData, ...veggieData, ...processedData, ...groceryData];
+
+                // Log combined products data for debugging
+                console.log("Combined Products Data:", allProducts);
+
+                // Find and display products in the cart
+                cart.forEach((item, index) => {
+                    const product = allProducts.find(p => p.id === item.id);
+                    if (product) {
+                        cartItemsList.innerHTML += `
+                            <li class="cart-item">
+                                <span class="serial-number">${index + 1}</span>
+                                <img src="${product.image}" alt="${product.name}" width="80">
+                                <div>
+                                    <h3>${product.name}</h3>
+                                    <p>${product.price}</p>
+                                    <p>Subscription: ${item.subscriptionType}</p>
+                                </div>
+                                <span class="remove-item" onclick="removeFromCart(${item.id})">&times;</span>
+                            </li>
+                        `;
+                    } else {
+                        console.log(`Product with ID ${item.id} not found in allProducts.`);
+                    }
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching product data:', error);
+            });
+
+            updateCartCount();
+        }
+
+        function removeFromCart(id) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart = cart.filter(item => item.id !== id);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            renderCart();
+        }
+
+        function processPayment() {
+            alert('Payment processing...');
+        }
+
+        window.onload = renderCart;
+    </script>
+    
+</body>
+</html>

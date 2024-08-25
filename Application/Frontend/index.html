@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login & Signup</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Link to Bootstrap Icons for cart icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css">
+    <!-- Link to Font Awesome for other icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <div class="logo">
+                <i class="bi bi-cart"></i>
+                <span>BasketBliss</span>
+            </div>
+            <div class="menu-icon" onclick="toggleSidebar()">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+    
+    <aside id="sidebar">
+        <div class="close-btn" onclick="toggleSidebar()">
+            <i class="fas fa-times"></i>
+        </div>
+        <a href="#how-it-works">How it Works?</a>
+        <a href="#features">Features</a>
+    </aside>
+
+    <main>
+        <div class="main-container" id="home">
+            <div class="left-content">
+                <img src="image.jpg" class="image">
+            </div>
+            <div class="right-content">
+                <!-- Login Form -->
+                <div class="form-container">
+                    <h2>Login</h2>
+                    <form onsubmit="return handleLogin()">
+                        <input type="email" name="email" placeholder="Email ID" id="email" required>
+                        <div class="password-container">
+                            <input type="password" name="password" placeholder="Password" id="login-password" required>
+                            <i class="far fa-eye toggle-login-password" onclick="toggleLoginPassword()"></i>
+                        </div>
+                        <button type="submit">Login</button>
+                    </form>
+                    <a href="#" class="link" onclick="toggleSignup()">Don't have an account? Signup</a>
+                </div>
+
+                <!-- Signup Form -->
+                <div class="form-container" id="signup-container" style="display:none;">
+                    <h2>Signup</h2>
+                    <form action="/signup" method="POST" onsubmit="return validateSignupForm()">
+                        <div class="name-container">
+                            <input type="text" name="firstName" placeholder="First Name" required>
+                            <input type="text" name="lastName" placeholder="Last Name" required>
+                        </div>
+                        <input type="email" name="email" placeholder="Email ID" required>
+                        <div class="password-container">
+                            <input type="password" name="password" placeholder="Password" id="signup-password" required>
+                            <i class="far fa-eye toggle-password" onclick="toggleSignupPassword()"></i>
+                        </div>
+                        <div class="password-container">
+                            <input type="password" name="confirmPassword" placeholder="Confirm Password" id="confirm-password" required>
+                            <i class="far fa-eye toggle-confirm-password" onclick="toggleConfirmPassword()"></i>
+                        </div>
+                        <input type="text" name="phone" placeholder="Phone Number" required>
+                        <input type="text" name="address" placeholder="Address" required>
+                        <small id="password-error" class="error-message"></small>
+                        <button type="submit">Signup</button>
+                    </form>
+                    <a href="#" class="link" onclick="toggleLogin()">Already have an account? Login</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-upper">
+            <div class="footer-address">
+                <h4>Address</h4>
+                <p>1234 Elm St</p>
+                <p>Suite 567</p>
+                <p>Springfield, USA</p>
+            </div>
+            <div class="footer-about">
+                <h4>About</h4>
+                <a href="#faq">FAQ</a>
+                <a href="#terms">Terms and Conditions</a>
+                <a href="#privacy">Privacy Policy</a>
+            </div>
+            <div class="footer-social">
+                <h4>Connect with us</h4>
+                <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 404 Brain Not Found. All rights reserved.</p>
+        </div>
+    </footer>
+    <script src="scripts.js"></script>
+</body>
+</html>

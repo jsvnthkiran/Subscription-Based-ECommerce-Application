@@ -1,0 +1,74 @@
+[
+    {
+        "id": 21,
+        "name": "Uncle Chips",
+        "image": "./snacks/21.jpg",
+        "price": "₹20.00",
+        "description": "Crispy and savory potato chips.",
+        "detailImage": "snacks-uncle-chips-detail.jpg"
+    },
+    {
+        "id": 22,
+        "name": "Kurkure Masala Munch",
+        "image": "./snacks/22.jpg",
+        "price": "₹30.00",
+        "description": "Spicy and crunchy Kurkure snack.",
+        "detailImage": "snacks-kurkure-masala-munch-detail.jpg"
+    },
+    {
+        "id": 23,
+        "name": "Bingo Mad Angles",
+        "image": "./snacks/23.jpg",
+        "price": "₹25.00",
+        "description": "Tangy and crunchy Bingo Mad Angles.",
+        "detailImage": "snacks-bingo-mad-angles-detail.jpg"
+    },
+    {
+        "id": 24,
+        "name": "Lays Classic Salted",
+        "image": "./snacks/24.jpg",
+        "price": "₹10.00",
+        "description": "Classic salted Lays potato chips.",
+        "detailImage": "snacks-lays-classic-salted-detail.jpg"
+    },
+    {
+        "id": 25,
+        "name": "Kurkure Green Chutney",
+        "image": "./snacks/25.jpg",
+        "price": "₹20.00",
+        "description": "Kurkure with a zesty green chutney flavor.",
+        "detailImage": "snacks-kurkure-green-chutney-detail.jpg"
+    },
+    {
+        "id": 26,
+        "name": "Bingo Tedhe Medhe",
+        "image": "./snacks/26.jpg",
+        "price": "₹15.00",
+        "description": "Curved and twisted crunchy Bingo snack.",
+        "detailImage": "snacks-bingo-tedhe-medhe-detail.jpg"
+    },
+    {
+        "id": 27,
+        "name": "Lays Magic Masala",
+        "image": "./snacks/27.jpg",
+        "price": "₹30.00",
+        "description": "Spicy and flavorful Lays Magic Masala.",
+        "detailImage": "snacks-lays-magic-masala-detail.jpg"
+    },
+    {
+        "id": 28,
+        "name": "Bingo Yumitos",
+        "image": "./snacks/28.jpg",
+        "price": "₹10.00",
+        "description": "Light and crispy Bingo Yumitos potato chips.",
+        "detailImage": "snacks-bingo-yumitos-detail.jpg"
+    },
+    {
+        "id": 29,
+        "name": "Lays Spanish Tomato Tango",
+        "image": "./snacks/29.jpg",
+        "price": "₹20.00",
+        "description": "Tangy tomato-flavored Lays chips.",
+        "detailImage": "snacks-lays-spanish-tomato-tango-detail.jpg"
+    }
+]

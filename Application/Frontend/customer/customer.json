@@ -1,0 +1,40 @@
+{
+    "customerId": "C101",
+    "firstName": "Aishwarya",
+    "lastName": "Basu",
+    "address": "Patrika Nagar, Hyderabad",
+    "email": "aaishwaryaaa1104@gmail.com",
+    "phoneNumber": "9456812902",
+    "activeSubscriptions": [
+        {
+            "productName": "Cow Milk",
+            "price": "₹60.00",
+            "subscriptionType": "Weekly",
+            "startDate": "2024-08-01",
+            "endDate": "2024-08-07"
+        },
+        {
+            "productName": "Paneer",
+            "price": "₹120.00",
+            "subscriptionType": "Monthly",
+            "startDate": "2024-07-15",
+            "endDate": "2024-08-15"
+        }
+    ],
+    "pastSubscriptions": [
+        {
+            "productName": "Chocolate Cake",
+            "price": "₹250.00",
+            "subscriptionType": "One-time",
+            "startDate": "2024-06-10",
+            "endDate": "2024-06-10"
+        },
+        {
+            "productName": "Red Lentils",
+            "price": "₹180.00",
+            "subscriptionType": "Weekly",
+            "startDate": "2024-05-01",
+            "endDate": "2024-05-07"
+        }
+    ]
+}

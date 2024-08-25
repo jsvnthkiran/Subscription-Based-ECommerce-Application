@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Dashboard</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="cart.js" defer></script> <!-- Include the cart script -->
+    <script src="logout-func.js" defer></script>
+
+
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <div class="logo-container">
+                <span class="open-sidebar-btn" onclick="openSidebar()">
+                    <i class="fas fa-bars"></i>
+                </span>
+                <div class="logo">
+                    <i class="bi bi-cart"></i> BasketBliss
+                </div>
+            </div>
+            <div class="profile-icon">
+                <i class="fas fa-user"></i>
+                <div class="dropdown-menu">
+                    <a href="profile.html">View Profile</a>
+                    <a onclick="logout()">Logout</a>
+                </div>
+            </div>
+            
+        </div>
+    </header>
+
+    <div class="bg-image"></div>
+
+    <div id="mySidebar" class="sidebar">
+        <a href="javascript:void(0)" class="close-btn" onclick="closeSidebar()">
+            <i class="fas fa-times"></i>
+        </a>
+        <ul class="category-list">
+        <a href="dashboard.html">Home</a>
+            <li>
+                <a href="#category1">Categories</a>
+                <ul class="subcategory-list">
+                    <li><a href="grocery-list.html">Groceries & Staples</a></li>
+                    <li><a href="processed-list.html">Processed Food</a></li>
+                    <li><a href="veggie-list.html">Veggies & Fruits</a></li>
+                    <li><a href="dairy-list.html">Dairy Products</a></li>
+                </ul>
+            </li>
+        <a href="subscription.html">Subscription</a>
+        <a href="cart.html">Cart <span class="cart-count">0</span></a>
+        </ul>
+    </div>
+
+    <div class="dashboard-content">
+
+        <div class="tabs-container">
+            <div class="tabs">
+                <div class="tab" id="groceries">
+                    <h3>Groceries & Staples</h3>
+                    <img src="https://images.pexels.com/photos/531446/pexels-photo-531446.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load" alt="Atta, Dal, Rice" class="tab-image">
+                    <a href="grocery-list.html" class="order-now-btn">Order Now</a>
+                </div>
+                <div class="tab" id="snacks">
+                    <h3>Processed Food</h3>
+                    <img src="https://images.pexels.com/photos/7451961/pexels-photo-7451961.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load" alt="Snacks" class="tab-image">
+                    <a href="snacks-list.html" class="order-now-btn">Order Now</a>
+                </div>
+                <div class="tab" id="veggies-fruits">
+                    <h3>Veggies & Fruits</h3>
+                    <img src="https://images.pexels.com/photos/13000111/pexels-photo-13000111.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Veggies & Fruits" class="tab-image">
+                    <a href="veggie-list.html" class="order-now-btn">Order Now</a>
+                </div>
+                <div class="tab" id="dairy">
+                    <h3>Dairy Products</h3>
+                    <img src="https://images.pexels.com/photos/7451957/pexels-photo-7451957.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Milk & Dairy Products" class="tab-image">
+                    <a href="dairy-list.html" class="order-now-btn">Order Now</a>
+                </div>
+            </div>
+        </div>
+
+<!-- New section for Daily Delivery -->
+<section id="daily-delivery">
+    <h2>Why you should subscribe from BasketBliss?</h2>
+    <div class="image-instructions">
+        <div class="instruction">
+            <i class="fas fa-calendar-day"></i>
+            <p>Set vacation time offs</p>
+        </div>
+        <div class="instruction">
+            <i class="fas fa-redo"></i>
+            <p>Create repeat orders</p>
+        </div>
+        <div class="instruction">
+            <i class="fas fa-leaf"></i>
+            <p>Freshness guaranteed</p>
+        </div>
+        <div class="instruction">
+            <i class="fas fa-undo-alt"></i>
+            <p>No questions asked return policy</p>
+        </div>
+        <div class="instruction">
+            <i class="fas fa-clock"></i>
+            <p>On time, every time guaranteed</p>
+        </div>
+        <div class="instruction">
+            <i class="fas fa-box"></i>
+            <p>Wide range of milk and other items</p>
+        </div>
+        <div class="instruction">
+            <i class="fas fa-money-bill-wave"></i>
+            <p>Manage your grocery expenses</p>
+        </div>
+        <div class="instruction">
+            <i class="fas fa-calendar-alt"></i>
+            <p>Custom delivery options</p>
+        </div>
+    </div>
+</section>
+
+
+<!-- New section for How It Works -->
+<section id="how-it-works">
+    <h2>How It Works?</h2>
+    <div class="how-it-works-container">
+        <div class="step">
+            <i class="fas fa-box-open step-icon"></i>
+            <p>Choose from a wide range of products</p>
+        </div>
+        <div class="step">
+            <i class="fas fa-calendar-check step-icon"></i>
+            <p>Pick a subscription plan without worries</p>
+        </div>
+        <div class="step">
+            <i class="fas fa-wallet step-icon"></i>
+            <p>Top up your wallet</p>
+        </div>
+        <div class="step">
+            <i class="fas fa-truck step-icon"></i>
+            <p>Get your products delivered to your doorstep</p>
+        </div>
+    </div>
+</section>
+
+
+<section id="customer-reviews">
+    <h2>What Our Customers Say</h2>
+    <div class="reviews-container">
+        <div class="reviews-wrapper"></div>
+    </div>
+    <div class="review-controls">
+        <button onclick="moveSlides(-1)" class="review-prev"><i class="fas fa-chevron-left"></i></button>
+        <button onclick="moveSlides(1)" class="review-next"><i class="fas fa-chevron-right"></i></button>
+    </div>
+</section>
+
+
+
+    
+
+    <footer>
+        <div class="footer-upper">
+            <div class="footer-address">
+                <h4>Address</h4>
+                <p>1234 Elm St</p>
+                <p>Suite 567</p>
+                <p>Springfield, USA</p>
+            </div>
+            <div class="footer-about">
+                <h4>About</h4>
+                <a href="#faq">FAQ</a>
+                <a href="#terms">Terms and Conditions</a>
+                <a href="#privacy">Privacy Policy</a>
+            </div>
+            <div class="footer-social">
+                <h4>Connect with us</h4>
+                <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 404 Brain Not Found. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function openSidebar() {
+            document.getElementById("mySidebar").style.width = "250px";
+            document.querySelector(".content").style.marginLeft = "250px";
+        }
+
+        function closeSidebar() {
+            document.getElementById("mySidebar").style.width = "0";
+            document.querySelector(".content").style.marginLeft= "0";
+        }
+
+        function isElementInViewport(el) {
+            const rect = el.getBoundingClientRect();
+            return (
+                rect.top >= 0 &&
+                rect.left >= 0 &&
+                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+            );
+        }
+
+        function handleScroll() {
+            const bgImage = document.querySelector('.bg-image');
+            if (isElementInViewport(bgImage)) {
+                bgImage.classList.add('visible');
+            }
+        }
+
+        window.addEventListener('scroll', handleScroll);
+        // Run on initial load
+        handleScroll();
+
+        
+        document.addEventListener('DOMContentLoaded', function() {
+  fetchReviews();
+});
+
+async function fetchReviews() {
+  try {
+    const response = await fetch('review.json'); // Update with the correct path
+    const reviews = await response.json();
+    
+    const reviewsWrapper = document.querySelector('.reviews-wrapper');
+    const reviewsPerSlide = 3; // Number of reviews per slide
+    let slideContent = '';
+    
+    for (let i = 0; i < reviews.length; i += reviewsPerSlide) {
+      const reviewsChunk = reviews.slice(i, i + reviewsPerSlide);
+      slideContent += `<div class="reviews-slide">`;
+      
+      reviewsChunk.forEach(review => {
+        slideContent += `
+          <div class="review">
+            <p>"${review.text}"</p>
+            <p>- ${review.author}</p>
+          </div>
+        `;
+      });
+      
+      slideContent += `</div>`;
+    }
+    
+    reviewsWrapper.innerHTML = slideContent;
+  } catch (error) {
+    console.error('Error fetching reviews:', error);
+  }
+}
+
+let currentSlide = 0;
+
+function moveSlides(step) {
+    const slides = document.querySelectorAll('.reviews-slide');
+    const totalSlides = slides.length;
+    const visibleSlides = 3;
+
+    currentSlide = (currentSlide + step + totalSlides) % totalSlides;
+
+    slides.forEach((slide, index) => {
+        slide.classList.remove('active');
+        if (index >= currentSlide && index < currentSlide + visibleSlides) {
+            slide.classList.add('active');
+        }
+    });
+
+    const offset = -currentSlide * (100 / visibleSlides);
+    document.querySelector('.reviews-wrapper').style.transform = `translateX(${offset}%)`;
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    fetchReviews();
+});
+
+async function fetchReviews() {
+    try {
+        const response = await fetch('review.json');
+        const reviews = await response.json();
+        
+        const reviewsWrapper = document.querySelector('.reviews-wrapper');
+        let slideContent = '';
+        
+        reviews.forEach((review, index) => {
+            slideContent += `
+                <div class="reviews-slide ${index < 3 ? 'active' : ''}">
+                    <div class="review">
+                        <p>"${review.text}"</p>
+                        <p>- ${review.author}</p>
+                    </div>
+                </div>
+            `;
+        });
+        
+        reviewsWrapper.innerHTML = slideContent;
+    } catch (error) {
+        console.error('Error fetching reviews:', error);
+    }
+}
+
+    </script>
+</body>
+</html>

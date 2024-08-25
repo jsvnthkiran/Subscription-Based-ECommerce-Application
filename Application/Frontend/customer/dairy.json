@@ -1,0 +1,74 @@
+[
+    {
+        "id": 1,
+        "name": "Amul Butter",
+        "image": "./dairy/1.jpg",
+        "price": "₹60.00",
+        "description": "Smooth and creamy Amul Butter, a must-have for every household.",
+        "detailImage": "dairy-amul-butter-detail.jpg"
+    },
+    {
+        "id": 2,
+        "name": "Amul Cheese Spread",
+        "image": "./dairy/2.jpg",
+        "price": "₹80.00",
+        "description": "Delicious and versatile Amul Cheese Spread, perfect for sandwiches and snacks.",
+        "detailImage": "dairy-amul-cheese-spread-detail.jpg"
+    },
+    {
+        "id": 3,
+        "name": "Amul Cow Ghee",
+        "image": "./dairy/3.jpg",
+        "price": "₹140.00",
+        "description": "Pure Amul Cow Ghee made from high-quality cow's milk.",
+        "detailImage": "dairy-amul-cow-ghee-detail.jpg"
+    },
+    {
+        "id": 4,
+        "name": "Amul Paneer",
+        "image": "./dairy/4.jpg",
+        "price": "₹120.00",
+        "description": "Fresh and soft Amul Paneer, perfect for cooking delicious dishes.",
+        "detailImage": "dairy-amul-paneer-detail.jpg"
+    },
+    {
+        "id": 5,
+        "name": "Milky Moo Aam Dahi",
+        "image": "./dairy/5.jpg",
+        "price": "₹55.00",
+        "description": "Traditional Milky Moo Aam Dahi with a rich mango flavor.",
+        "detailImage": "dairy-milky-moo-aam-dahi-detail.jpg"
+    },
+    {
+        "id": 6,
+        "name": "Milky Moo Ghee",
+        "image": "./dairy/6.jpg",
+        "price": "₹140.00",
+        "description": "Pure and aromatic Milky Moo Ghee made from fresh milk.",
+        "detailImage": "dairy-milky-moo-ghee-detail.jpg"
+    },
+    {
+        "id": 7,
+        "name": "Milky Moo Milk",
+        "image": "./dairy/7.jpg",
+        "price": "₹65.00",
+        "description": "Fresh and nutritious Milky Moo Milk, ideal for everyday consumption.",
+        "detailImage": "dairy-milky-moo-milk-detail.jpg"
+    },
+    {
+        "id": 8,
+        "name": "Amul Taaza",
+        "image": "./dairy/8.jpg",
+        "price": "₹75.00",
+        "description": "Pure and fresh Amul Taaza milk, packed with essential nutrients.",
+        "detailImage": "dairy-amul-taaza-detail.jpg"
+    },
+    {
+        "id": 9,
+        "name": "Go Cheese",
+        "image": "./dairy/9.jpg",
+        "price": "₹90.00",
+        "description": "Rich and creamy Go Cheese, perfect for all your cheesy cravings.",
+        "detailImage": "dairy-go-cheese-detail.jpg"
+    }
+]
