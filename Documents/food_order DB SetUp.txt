@@ -1,0 +1,70 @@
+CREATE TABLE customer (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE product (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    price DECIMAL(10,2) NOT NULL,
+    subscription_discount DECIMAL(5,2)
+);
+
+CREATE TABLE subscription (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    customer_id INT,
+    subscription_type VARCHAR(255) NOT NULL,
+    start_date DATE,
+    end_date DATE,
+    is_active BOOLEAN DEFAULT TRUE,
+    FOREIGN KEY (customer_id) REFERENCES customer(id)
+);
+
+CREATE TABLE orders (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    customer_email VARCHAR(255) NOT NULL,
+    total_price DECIMAL(10,2) NOT NULL,
+    subscription_type VARCHAR(255),
+    order_date DATE,
+    FOREIGN KEY (customer_email) REFERENCES customer(email)
+);
+
+CREATE TABLE order_item (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    order_id INT,
+    product_id INT,
+    quantity INT NOT NULL,
+    FOREIGN KEY (order_id) REFERENCES orders(id),
+    FOREIGN KEY (product_id) REFERENCES product(id)
+);
+
+CREATE TABLE delivery_schedule (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    customer_id INT,
+    product_id INT,
+    delivery_date DATE NOT NULL,
+    FOREIGN KEY (customer_id) REFERENCES customer(id),
+    FOREIGN KEY (product_id) REFERENCES product(id)
+);
+
+CREATE TABLE order_history (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    customer_id INT,
+    product_id INT,
+    quantity INT,
+    subscription_id INT,
+    order_date DATE,
+    FOREIGN KEY (customer_id) REFERENCES customer(id),
+    FOREIGN KEY (product_id) REFERENCES product(id),
+    FOREIGN KEY (subscription_id) REFERENCES subscription(id)
+);
+
+-- Insert some dummy data
+INSERT INTO customer (name, email, password) VALUES ('John Doe', 'john@example.com', 'password123');
+INSERT INTO product (name, price, subscription_discount) VALUES ('Apple', 1.50, 10.0);
+INSERT INTO product (name, price, subscription_discount) VALUES ('Banana', 0.75, 5.0);
+INSERT INTO product (name, price, subscription_discount) VALUES ('Orange', 2.00, 8.0);
+
+-- Subscriptions, orders, and delivery schedules would follow similar patterns based on the above tables.
